@@ -7,6 +7,8 @@ interface ProjectListProps {
   projects: Project[];
 }
 
+
+
 function ProjectList ({ projects }: ProjectListProps) {
   const [projectBeingEdited, setProjectBeingEdited] = useState({});
 
@@ -14,14 +16,18 @@ function ProjectList ({ projects }: ProjectListProps) {
       //  console.log(project);
         setProjectBeingEdited(project);
      };
+     const cancelEditing = () => {
+      setProjectBeingEdited({});
+  };
     const items = projects.map(project => (
       <div key={project.id} className="cols-sm">
           {project === projectBeingEdited ? (
-            <ProjectForm />
+            <ProjectForm 
+            onCancel={cancelEditing}
+            />
           ) : (
             <ProjectCard project={project} onEdit={handleEdit} />
           )}
-      <ProjectForm />
       </div>
     ));
     return <div className="row">{items}</div>;
