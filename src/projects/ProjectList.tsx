@@ -21,10 +21,11 @@ function ProjectList ({ projects,onSave }: ProjectListProps) {
      const cancelEditing = () => {
       setProjectBeingEdited({});
   };
-    const items = projects.map(project => (
+  const items = projects.map(project => (
       <div key={project.id} className="cols-sm">
           {project === projectBeingEdited ? (
-            <ProjectForm 
+            <ProjectForm
+            project={project} 
             onSave={onSave}
             onCancel={cancelEditing}
             />
